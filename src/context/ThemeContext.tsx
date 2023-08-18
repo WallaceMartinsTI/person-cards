@@ -1,10 +1,11 @@
-import { createContext, useState, ReactNode, Dispatch } from "react";
+// React
+import { createContext, useState, ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
 }
 
-interface ContextProps {
+export interface ContextProps {
   darkTheme?: boolean;
   setDarkTheme?: (value: boolean) => void;
 }

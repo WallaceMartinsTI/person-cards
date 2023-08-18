@@ -1,15 +1,25 @@
-import styles from "./Header.module.scss";
-import Logo from "../../assets/logo.png";
-import { useState } from "react";
-import Logo_Dark from "../../assets/logo-dark.png";
+// React
+import { useState, useEffect, useRef } from "react";
+
+// Context
+import { ContextProps } from "../../context/ThemeContext";
+
+// Hooks
+import { useThemeContext } from "../../hooks/useThemeContext";
+
+// Translation
 import { i18n } from "../../translate/i18n";
 
-import { useThemeContext } from "../../hooks/useThemeContext";
-import { useEffect, useRef } from "react";
-
+// Assets
+import Logo from "../../assets/logo.png";
+import Logo_Dark from "../../assets/logo-dark.png";
 import Moon from "../../assets/moon-stars.svg";
 import Sun from "../../assets/sun.svg";
 
+// CSS
+import styles from "./Header.module.scss";
+
+// Others
 import { getCountryFlag } from "../../App";
 
 const I18N_STORAGE_KEY = "i18nextLng";
@@ -20,63 +30,38 @@ interface Props {
 
 const Header = ({ logoTitle }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { darkTheme, setDarkTheme } = useThemeContext();
+  const [language, setLanguage] = useState(
+    localStorage.getItem(I18N_STORAGE_KEY)
+  );
+
+  const { darkTheme, setDarkTheme }: ContextProps = useThemeContext();
 
   const themeButtonRef = useRef<HTMLButtonElement>(null);
   const logoImagenRef = useRef<HTMLImageElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const [language, setLanguage] = useState(
-    localStorage.getItem(I18N_STORAGE_KEY)
-  );
-
+  // set new language and refresh the page to apply new language
   const handleChangeLanguage = (newLang: string) => {
     setLanguage(newLang);
     location = location;
   };
 
-  useEffect(() => {
-    localStorage.setItem(I18N_STORAGE_KEY, language as string);
-  }, [language]);
-
+  // Toggle light/dark mode
   const toggleMode = () => {
     setDarkTheme!(!darkTheme);
   };
 
-  useEffect(() => {
-    if (darkTheme) {
-      themeButtonRef.current!.style.backgroundImage = `url(${Moon})`;
-    } else {
-      themeButtonRef.current!.style.backgroundImage = `url(${Sun})`;
-    }
-  }, [darkTheme]);
-
-  // Close modal if click ouside
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(e.target as HTMLElement)
-      ) {
-        hideModal();
-      }
-    };
-
-    addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const hideModal = () => {
-    setIsModalOpen(false);
-  };
-
+  // display/hide modal
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  // hide modal
+  const hideModal = () => {
+    setIsModalOpen(false);
+  };
+
+  // Renders title based on selected language
   const renderTitle = () => {
     let countryLang = "";
     let flag = "";
@@ -106,6 +91,38 @@ const Header = ({ logoTitle }: Props) => {
       </div>
     );
   };
+
+  // Set new language to local storage
+  useEffect(() => {
+    localStorage.setItem(I18N_STORAGE_KEY, language as string);
+  }, [language]);
+
+  // Change light/dark theme icon
+  useEffect(() => {
+    if (darkTheme) {
+      themeButtonRef.current!.style.backgroundImage = `url(${Moon})`;
+    } else {
+      themeButtonRef.current!.style.backgroundImage = `url(${Sun})`;
+    }
+  }, [darkTheme]);
+
+  // Close modal if click ouside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(e.target as HTMLElement)
+      ) {
+        hideModal();
+      }
+    };
+
+    addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={`${styles.header} ${darkTheme ? styles.dark : ""}`}>

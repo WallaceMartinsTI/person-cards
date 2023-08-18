@@ -1,10 +1,21 @@
-import styles from "./App.module.scss";
+// React
+import { useState } from "react";
+
+// Hooks
+import { useThemeContext } from "./hooks/useThemeContext";
+
+// Components
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import { useThemeContext } from "./hooks/useThemeContext";
-import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+
+// Translation
 import { i18n } from "./translate/i18n";
-import { useState } from "react";
+
+// Icons
+import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+
+// CSS
+import styles from "./App.module.scss";
 
 interface UserProps {
   gender: string;

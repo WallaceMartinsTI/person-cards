@@ -1,5 +1,8 @@
-import styles from "./Footer.module.scss";
+// Hooks
 import { useThemeContext } from "../../hooks/useThemeContext";
+
+// CSS
+import styles from "./Footer.module.scss";
 
 const Footer = () => {
   const { darkTheme } = useThemeContext();
