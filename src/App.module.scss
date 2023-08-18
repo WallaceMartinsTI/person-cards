@@ -3,10 +3,11 @@
   height: 100vh;
 
   main {
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    padding-bottom: 5em;
     
     h1 {
       margin-bottom: 1em;
@@ -111,7 +112,7 @@
 }
 
 .male_icon {
-  background-color: rgba(70, 70, 235, 0.664);
+  background-color: rgba(0, 0, 255, 0.76);
 }
 
 .female_icon {

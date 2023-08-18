@@ -1,4 +1,5 @@
 import styles from "./App.module.scss";
+import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import { useThemeContext } from "./hooks/useThemeContext";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
@@ -53,6 +54,10 @@ const App = () => {
       countryFlag: "US",
     },
   ];
+
+  const getCountryFlag = (countryFlag: string) => {
+    return `https://flagsapi.com/${countryFlag}/flat/64.png`;
+  };
 
   return (
     <div className={`${styles.App} ${darkTheme ? styles.dark : ""}`}>
@@ -111,13 +116,19 @@ const App = () => {
                     <div>{user.cep}</div>
                   </section>
 
-                  <div className={styles.country_flag}>[BRASIL]</div>
+                  <div className={styles.country_flag}>
+                    <img
+                      src={getCountryFlag(user.countryFlag)}
+                      alt={`${user.countryFlag} flag`}
+                    />
+                  </div>
                 </div>
               </section>
             </div>
           ))}
         </section>
       </main>
+      <Footer />
     </div>
   );
 };
