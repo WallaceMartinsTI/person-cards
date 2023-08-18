@@ -136,7 +136,9 @@ const App = () => {
                     <div>
                       {user.location.city} - {user.location.state}
                     </div>
-                    <div>{user.location.postcode}</div>
+                    <div>
+                      {user.location.postcode} - {user.location.country}
+                    </div>
                   </section>
 
                   <div className={styles.country_flag}>
