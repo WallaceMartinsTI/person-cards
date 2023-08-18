@@ -43,7 +43,7 @@ Acesse a aplicação [clicando aqui]().
 
    <div>
       <h2>Tema Dark</h2>
-      <img src="./public/screenshot-light.png" alt="">
+      <img src="./public/screenshot-dark.png" alt="">
    </div>
 
 </div>
