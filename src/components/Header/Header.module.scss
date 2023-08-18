@@ -1,15 +1,16 @@
 .header {
-  background-color: #fff;
-  color: white;
+  background-color: var(--white-color);
+  color: var(--white-color);
   width: 100%;
   height: 3em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #61DAFB;
+  color: var(--primary-light-color);
   font-size: 1.2em;
   box-shadow: 0 4px 6px -6px #222;
   margin-bottom: 2em;
+  padding: 0 1em;
   
   .logo_container {
     display: flex;
@@ -35,7 +36,7 @@
     button {
       width: 32px;
       height: 32px;
-      background: #fff url(../../assets/sun.svg) no-repeat center;
+      background: var(--white-color) url(../../assets/sun.svg) no-repeat center;
       border: 0;
       border-radius: 50%;
 
@@ -48,7 +49,6 @@
       animation: slide-in 0.2s forwards;
 
       &:hover {
-        //outline: 8px solid rgba(0, 0, 0, 0.1);
         outline: 8px solid rgba(97, 218, 251, 0.5);
       }
     }
@@ -65,14 +65,104 @@
     }
   }
 
-  .language_container {}
+  .language_container {
+    position: relative;
+    height: 100%;
+    min-width: 15%;
+
+    .language_text {
+      border: 1px solid var(--primary-light-color);
+      border-radius: 15px;
+      height: 100%;
+      user-select: none;
+      display: flex;
+      justify-content: center;
+
+      .language_data {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        img {
+          margin-left: 10px;
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: 10px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: var(--primary-light-color); 
+          transition: width 0.3s ease-in-out; 
+        }
+
+        &:hover::before {
+          width: 100%; 
+        }
+      }
+    }
+
+    .language_modal {
+      position: absolute;
+      border-left: solid 1px var(--primary-light-color);
+      border-right: solid 1px var(--primary-light-color);
+      border-bottom: solid 1px var(--primary-light-color);
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      width: 100%;
+      top: 100%;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      
+      div {
+        cursor: pointer;
+        user-select: none;
+
+        
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0 1em;
+
+        p {
+          flex: 1;
+          position: relative;
+
+          &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-light-color); 
+            transition: width 0.3s ease-in-out; 
+          }
   
+          &:hover::before {
+            width: 85%; 
+          }
+        }
+      }
+    }
+  }
+}
+
+.hide {
+  display: none;
 }
 
 .dark {
-  background-color: #000;
-  color: rgb(209, 0, 0);
-  box-shadow: 0 6px 6px -6px #fff;
+  background-color: var(--dark-bg-color);
+  color: var(--primary-dark-color);
+  box-shadow: 0 6px 6px -6px var(--white-color);
 
   .logo_container {   
     .logo {
@@ -85,12 +175,38 @@
       animation: slide-back 0.2s forwards;
 
       &:hover {
-        outline: 8px solid rgba(184, 20, 20, 0.733);
+        outline: 8px solid var(--secondary-dark-color);
       }
     }
 
     span {
-      background: rgba(184, 20, 20, 0.733);
+      background: var(--secondary-dark-color);
+    }
+  }
+
+  .language_container {
+    .language_text {
+      border: 1px solid var(--primary-dark-color);
+
+      .language_data {
+        &::before {
+          background-color: var(--primary-dark-color); 
+        }
+      }
+    }
+
+    .language_modal {
+      border-left: solid 1px var(--primary-dark-color);
+      border-right: solid 1px var(--primary-dark-color);
+      border-bottom: solid 1px var(--primary-dark-color);
+      
+      div {
+        p {
+          &::before {
+            background-color: var(--primary-dark-color); 
+          }
+        }
+      }
     }
   }
 }

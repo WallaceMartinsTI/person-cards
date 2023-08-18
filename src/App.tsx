@@ -3,6 +3,11 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import { useThemeContext } from "./hooks/useThemeContext";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+import { i18n } from "./translate/i18n";
+
+export const getCountryFlag = (countryFlag: string, size: number) => {
+  return `https://flagsapi.com/${countryFlag}/flat/${size}.png`;
+};
 
 const App = () => {
   const { darkTheme } = useThemeContext();
@@ -55,16 +60,14 @@ const App = () => {
     },
   ];
 
-  const getCountryFlag = (countryFlag: string) => {
-    return `https://flagsapi.com/${countryFlag}/flat/64.png`;
-  };
-
   return (
     <div className={`${styles.App} ${darkTheme ? styles.dark : ""}`}>
-      <Header />
+      <Header logoTitle={i18n.t("titles.logo_title")} />
       <main>
-        <h1>Gerador de Cards Pessoais</h1>
-        <button className={styles.generate_card_button}>Gerar Card</button>
+        <h1>{i18n.t("titles.main_title")}</h1>
+        <button className={styles.generate_card_button}>
+          {i18n.t("buttons.generate_card")}
+        </button>
 
         <section className={styles.cards_container}>
           {users.map((user) => (
@@ -90,17 +93,17 @@ const App = () => {
               <section className={styles.data_container}>
                 <div className={styles.data}>
                   <div>
-                    <p>Usuário:</p>
+                    <p>{i18n.t("messages.username")}:</p>
                     <p>{user.username}</p>
                   </div>
                   <div>
-                    <p>Nome:</p>
+                    <p>{i18n.t("messages.name")}:</p>
                     <p>
                       {user.first} {user.last}
                     </p>
                   </div>
                   <div>
-                    <p>Idade:</p>
+                    <p>{i18n.t("messages.age")}:</p>
                     <p>{user.age} anos</p>
                   </div>
                 </div>
@@ -108,7 +111,10 @@ const App = () => {
                 <div className={styles.address}>
                   <section>
                     <div>
-                      <span>Endereço:</span> {user.rua}, {user.numero}
+                      <span className={styles.address_span}>
+                        {i18n.t("messages.address")}
+                      </span>
+                      :&nbsp;{user.rua}, {user.numero}
                     </div>
                     <div>
                       {user.cidade} - {user.estado}
@@ -118,7 +124,7 @@ const App = () => {
 
                   <div className={styles.country_flag}>
                     <img
-                      src={getCountryFlag(user.countryFlag)}
+                      src={getCountryFlag(user.countryFlag, 64)}
                       alt={`${user.countryFlag} flag`}
                     />
                   </div>
