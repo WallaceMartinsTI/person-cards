@@ -59,7 +59,6 @@ const Header = ({ logoTitle }: Props) => {
         !modalRef.current.contains(e.target as HTMLElement)
       ) {
         hideModal();
-        console.log("Clique fora do elemento");
       }
     };
 
