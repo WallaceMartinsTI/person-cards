@@ -48,7 +48,8 @@
       animation: slide-in 0.2s forwards;
 
       &:hover {
-        outline: 8px solid rgba(0, 0, 0, 0.1);
+        //outline: 8px solid rgba(0, 0, 0, 0.1);
+        outline: 8px solid rgba(97, 218, 251, 0.5);
       }
     }
 
@@ -69,17 +70,27 @@
 }
 
 .dark {
-  background-color: black;
+  background-color: #000;
+  color: rgb(209, 0, 0);
+  box-shadow: 0 6px 6px -6px #fff;
+
+  .logo_container {   
+    .logo {
+      opacity: 0.8;
+    }
+  }
 
   .theme_container {
-
     button {      
       animation: slide-back 0.2s forwards;
 
       &:hover {
-        // mudar
         outline: 8px solid rgba(184, 20, 20, 0.733);
       }
+    }
+
+    span {
+      background: rgba(184, 20, 20, 0.733);
     }
   }
 }
