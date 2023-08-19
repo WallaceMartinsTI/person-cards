@@ -20,7 +20,7 @@
 
 Person Cards é uma aplicação com foco na prática em React, com temas claro e escuro, multi-idiomas (5 idiomas) e consumo de API.
 
-Acesse a aplicação [clicando aqui](https://wallacemartinsti.github.io/person-cards/).
+Acesse a aplicação online [clicando aqui](https://wallacemartinsti.github.io/person-cards/).
 
 ## 🔨 Funcionamento
 
