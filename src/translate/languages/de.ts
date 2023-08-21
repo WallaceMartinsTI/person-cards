@@ -21,6 +21,7 @@ const messages = {
       },
       buttons: {
         generate_card: "Karte Generieren",
+        loading: "Erstellen",
       },
     },
   },

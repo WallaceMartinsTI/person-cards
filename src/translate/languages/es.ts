@@ -21,6 +21,7 @@ const messages = {
       },
       buttons: {
         generate_card: "Generar Tarjeta",
+        loading: "Generando",
       },
     },
   },

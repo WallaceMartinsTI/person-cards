@@ -55,22 +55,23 @@ export const getCountryFlag = (countryFlag: string, size: number) => {
   return `https://flagsapi.com/${countryFlag}/flat/${size}.png`;
 };
 
-// DESABILITAR BOTAO DE GERAR SIMULANDO UM LOADING
-// E FAZER VERSÃO MOBILE
-
 const App = () => {
   const { darkTheme } = useThemeContext();
 
   const [users, setUsers] = useState<UserProps[]>([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const generatePerson = () => {
     const getUser = async () => {
+      setIsLoading(true);
       const response = await fetch("https://randomuser.me/api/");
       const data = await response.json();
       const newUser = data.results;
       console.log(newUser);
 
       setUsers([...users, newUser[0]]);
+      setIsLoading(false);
     };
 
     getUser();
@@ -81,12 +82,18 @@ const App = () => {
       <Header logoTitle={i18n.t("titles.logo_title")} />
       <main>
         <h1>{i18n.t("titles.main_title")}</h1>
-        <button
-          onClick={generatePerson}
-          className={styles.generate_card_button}
-        >
-          {i18n.t("buttons.generate_card")}
-        </button>
+        {isLoading ? (
+          <button className={styles.generate_card_button} disabled>
+            {i18n.t("buttons.loading")}...
+          </button>
+        ) : (
+          <button
+            onClick={generatePerson}
+            className={styles.generate_card_button}
+          >
+            {i18n.t("buttons.generate_card")}
+          </button>
+        )}
 
         <section className={styles.cards_container}>
           {users.map((user, index) => (
