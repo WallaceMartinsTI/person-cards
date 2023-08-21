@@ -55,6 +55,9 @@ export const getCountryFlag = (countryFlag: string, size: number) => {
   return `https://flagsapi.com/${countryFlag}/flat/${size}.png`;
 };
 
+// DESABILITAR BOTAO DE GERAR SIMULANDO UM LOADING
+// E FAZER VERSÃO MOBILE
+
 const App = () => {
   const { darkTheme } = useThemeContext();
 
