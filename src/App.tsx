@@ -68,7 +68,6 @@ const App = () => {
       const response = await fetch("https://randomuser.me/api/");
       const data = await response.json();
       const newUser = data.results;
-      console.log(newUser);
 
       setUsers([...users, newUser[0]]);
       setIsLoading(false);
